@@ -1,0 +1,13 @@
+fi\vamk\tka\tshirt\OrderlineRepository.class
+fi\vamk\tka\tshirt\CustomerRepository.class
+fi\vamk\tka\tshirt\Product.class
+fi\vamk\tka\tshirt\CustomerController.class
+fi\vamk\tka\tshirt\Order.class
+fi\vamk\tka\tshirt\Orderline.class
+fi\vamk\tka\tshirt\OrderRepository.class
+fi\vamk\tka\tshirt\ProductRepository.class
+fi\vamk\tka\tshirt\ProductController.class
+fi\vamk\tka\tshirt\Customer.class
+fi\vamk\tka\tshirt\OrdelineController.class
+fi\vamk\tka\tshirt\OrderController.class
+fi\vamk\tka\tshirt\TshirtApplication.class

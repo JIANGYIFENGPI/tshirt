@@ -1,0 +1,565 @@
+-- phpMyAdmin SQL Dump
+-- version 4.2.12deb2+deb8u5
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Mar 26, 2019 at 03:33 PM
+-- Server version: 5.5.62-0+deb8u1
+-- PHP Version: 5.6.40-0+deb8u1
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `tka_2019_shirt2`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_group`
+--
+
+CREATE TABLE IF NOT EXISTS `auth_group` (
+`id` int(11) NOT NULL,
+  `name` varchar(80) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_group_permissions`
+--
+
+CREATE TABLE IF NOT EXISTS `auth_group_permissions` (
+`id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_permission`
+--
+
+CREATE TABLE IF NOT EXISTS `auth_permission` (
+`id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `content_type_id` int(11) NOT NULL,
+  `codename` varchar(100) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `auth_permission`
+--
+
+INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALUES
+(1, 'Can add log entry', 1, 'add_logentry'),
+(2, 'Can change log entry', 1, 'change_logentry'),
+(3, 'Can delete log entry', 1, 'delete_logentry'),
+(4, 'Can add group', 2, 'add_group'),
+(5, 'Can change group', 2, 'change_group'),
+(6, 'Can delete group', 2, 'delete_group'),
+(7, 'Can add permission', 3, 'add_permission'),
+(8, 'Can change permission', 3, 'change_permission'),
+(9, 'Can delete permission', 3, 'delete_permission'),
+(10, 'Can add user', 4, 'add_user'),
+(11, 'Can change user', 4, 'change_user'),
+(12, 'Can delete user', 4, 'delete_user'),
+(13, 'Can add content type', 5, 'add_contenttype'),
+(14, 'Can change content type', 5, 'change_contenttype'),
+(15, 'Can delete content type', 5, 'delete_contenttype'),
+(16, 'Can add session', 6, 'add_session'),
+(17, 'Can change session', 6, 'change_session'),
+(18, 'Can delete session', 6, 'delete_session'),
+(19, 'Can view log entry', 1, 'view_logentry'),
+(20, 'Can view permission', 3, 'view_permission'),
+(21, 'Can view group', 2, 'view_group'),
+(22, 'Can view user', 4, 'view_user'),
+(23, 'Can view content type', 5, 'view_contenttype'),
+(24, 'Can view session', 6, 'view_session');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_user`
+--
+
+CREATE TABLE IF NOT EXISTS `auth_user` (
+`id` int(11) NOT NULL,
+  `password` varchar(128) NOT NULL,
+  `last_login` datetime DEFAULT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `username` varchar(150) NOT NULL,
+  `first_name` varchar(30) NOT NULL,
+  `last_name` varchar(150) NOT NULL,
+  `email` varchar(254) NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `date_joined` datetime NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `auth_user`
+--
+
+INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
+(1, 'pbkdf2_sha256$36000$id4aFADLiedU$C7zuTb9m4nwWYHw0wPMpQEAxA4MtX5yXruAng+YToHA=', '2019-03-22 09:05:09', 1, 'admin', '', '', '', 1, 1, '2019-03-22 09:04:50'),
+(2, 'pbkdf2_sha256$36000$FzHM4kl2jd4S$xCKmzKKoP5Mh+nILIe4rLQSSXBPsG2lMFZi0y7tCZXk=', '2019-03-26 13:33:05', 1, 'e1801607', '', '', '', 1, 1, '2019-03-22 09:14:30'),
+(3, 'pbkdf2_sha256$36000$pGaUwqnL4u7A$enzhX/OyJmqf0gzXGIZyd3VuRWG450KpCpOLefo+Fzc=', '2019-03-26 13:30:53', 1, 'admin2', '', '', '', 1, 1, '2019-03-22 09:14:50'),
+(4, 'pbkdf2_sha256$36000$AUsjqSq1NDcQ$mld9Qt6M50xT/NGwWtA3+v7NajvNiscc9fXXlZ2xinA=', '2019-03-22 09:17:09', 1, 'admin3', '', '', '', 1, 1, '2019-03-22 09:16:51'),
+(5, 'pbkdf2_sha256$36000$1XcI4f24hevv$Cu5j3TRKDJbV0lTjMtaRoh8BJIQ1MWRDPyZW3+/VPWE=', '2019-03-22 09:20:51', 1, 'administrator', '', '', '', 1, 1, '2019-03-22 09:17:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_user_groups`
+--
+
+CREATE TABLE IF NOT EXISTS `auth_user_groups` (
+`id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `group_id` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_user_user_permissions`
+--
+
+CREATE TABLE IF NOT EXISTS `auth_user_user_permissions` (
+`id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
+
+CREATE TABLE IF NOT EXISTS `customer` (
+`id` int(10) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`id`, `name`, `email`) VALUES
+(1, 'VAMK oy', 'tka@puv.fi');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `django_admin_log`
+--
+
+CREATE TABLE IF NOT EXISTS `django_admin_log` (
+`id` int(11) NOT NULL,
+  `action_time` datetime NOT NULL,
+  `object_id` longtext,
+  `object_repr` varchar(200) NOT NULL,
+  `action_flag` smallint(5) unsigned NOT NULL,
+  `change_message` longtext NOT NULL,
+  `content_type_id` int(11) DEFAULT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `django_content_type`
+--
+
+CREATE TABLE IF NOT EXISTS `django_content_type` (
+`id` int(11) NOT NULL,
+  `app_label` varchar(100) NOT NULL,
+  `model` varchar(100) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `django_content_type`
+--
+
+INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
+(1, 'admin', 'logentry'),
+(2, 'auth', 'group'),
+(3, 'auth', 'permission'),
+(4, 'auth', 'user'),
+(5, 'contenttypes', 'contenttype'),
+(6, 'sessions', 'session');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `django_migrations`
+--
+
+CREATE TABLE IF NOT EXISTS `django_migrations` (
+`id` int(11) NOT NULL,
+  `app` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `applied` datetime NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `django_migrations`
+--
+
+INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
+(1, 'contenttypes', '0001_initial', '2019-03-22 08:57:46'),
+(2, 'auth', '0001_initial', '2019-03-22 08:57:52'),
+(3, 'admin', '0001_initial', '2019-03-22 08:57:53'),
+(4, 'admin', '0002_logentry_remove_auto_add', '2019-03-22 08:57:53'),
+(5, 'contenttypes', '0002_remove_content_type_name', '2019-03-22 08:57:53'),
+(6, 'auth', '0002_alter_permission_name_max_length', '2019-03-22 08:57:53'),
+(7, 'auth', '0003_alter_user_email_max_length', '2019-03-22 08:57:53'),
+(8, 'auth', '0004_alter_user_username_opts', '2019-03-22 08:57:53'),
+(9, 'auth', '0005_alter_user_last_login_null', '2019-03-22 08:57:53'),
+(10, 'auth', '0006_require_contenttypes_0002', '2019-03-22 08:57:53'),
+(11, 'auth', '0007_alter_validators_add_error_messages', '2019-03-22 08:57:53'),
+(12, 'auth', '0008_alter_user_username_max_length', '2019-03-22 08:57:53'),
+(13, 'sessions', '0001_initial', '2019-03-22 08:57:53'),
+(14, 'tutorial', '0001_initial', '2019-03-22 08:57:54'),
+(15, 'tutorial', '0002_auto_20180204_2222', '2019-03-22 08:57:55'),
+(16, 'admin', '0003_logentry_add_action_flag_choices', '2019-03-26 10:55:45'),
+(17, 'auth', '0009_alter_user_last_name_max_length', '2019-03-26 10:55:45'),
+(18, 'tutorial', '0003_auto_20190324_1457', '2019-03-26 10:55:45'),
+(19, 'tutorial', '0004_product', '2019-03-26 13:27:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `django_session`
+--
+
+CREATE TABLE IF NOT EXISTS `django_session` (
+  `session_key` varchar(40) NOT NULL,
+  `session_data` longtext NOT NULL,
+  `expire_date` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `django_session`
+--
+
+INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('v2c2nx2vgj5alby9y1mg90b7w97193kv', 'YjhjN2YyZjRhNmViNWY0ZWExMzFmNmIxNThlYjMyNDZjZTM3OWNhZDp7Il9hdXRoX3VzZXJfaGFzaCI6ImFkYzIxODhkMTlkNzRkZGNlZDI1MTVlM2MxZmMwZWNlZmE2ZTcyZDMiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIxIn0=', '2019-04-05 09:05:09'),
+('r4f2dxbfx9ixhni6k6m40wwr56fqj7sz', 'NWM5YzZmYjMwZTNjMzkyNzFhZGZjYTg4YjM1NTA5NmEwMTUzODNkZTp7Il9hdXRoX3VzZXJfaGFzaCI6IjEwMjE0MTMzMTk5ZmY0NDFjZWFlZjdmNzkzOTY1NTNlYjQ1ZmI5YzkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIzIn0=', '2019-04-05 09:15:28'),
+('ypylmhtvw0vcwp7cur9go6tkaf3xbt4z', 'NTMzMDZmYmI3NGNmMWU1NDcwOWE3NTU2MzVjOWVjMTJiZWUyY2Q5Yjp7Il9hdXRoX3VzZXJfaGFzaCI6IjA2ZDVjNWI4Zjk5NjA3OWMyYmFkZTQwZGZhOTJlY2U3ODIxYzE1ZjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=', '2019-04-05 09:15:07'),
+('besoetssi7d6nvw899vfhxoeoytl7q7n', 'NWM5YzZmYjMwZTNjMzkyNzFhZGZjYTg4YjM1NTA5NmEwMTUzODNkZTp7Il9hdXRoX3VzZXJfaGFzaCI6IjEwMjE0MTMzMTk5ZmY0NDFjZWFlZjdmNzkzOTY1NTNlYjQ1ZmI5YzkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIzIn0=', '2019-04-05 09:15:36'),
+('cdftejq2qul2z52sjq4tzcbzl2nlqras', 'NWM5YzZmYjMwZTNjMzkyNzFhZGZjYTg4YjM1NTA5NmEwMTUzODNkZTp7Il9hdXRoX3VzZXJfaGFzaCI6IjEwMjE0MTMzMTk5ZmY0NDFjZWFlZjdmNzkzOTY1NTNlYjQ1ZmI5YzkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIzIn0=', '2019-04-05 09:16:00'),
+('34ssif09k5ps8778yuc0u4esc7wjqgdy', 'NWM5YzZmYjMwZTNjMzkyNzFhZGZjYTg4YjM1NTA5NmEwMTUzODNkZTp7Il9hdXRoX3VzZXJfaGFzaCI6IjEwMjE0MTMzMTk5ZmY0NDFjZWFlZjdmNzkzOTY1NTNlYjQ1ZmI5YzkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIzIn0=', '2019-04-05 20:00:41'),
+('dnni4sdp1l48nrh04tsidmpvvx0bf1d8', 'NWM5YzZmYjMwZTNjMzkyNzFhZGZjYTg4YjM1NTA5NmEwMTUzODNkZTp7Il9hdXRoX3VzZXJfaGFzaCI6IjEwMjE0MTMzMTk5ZmY0NDFjZWFlZjdmNzkzOTY1NTNlYjQ1ZmI5YzkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIzIn0=', '2019-04-05 09:20:43'),
+('19kychovxr8bo4f72d1bv2q1bngq1br7', 'YzI4YWUzZGI4NDczYzUzNmM2NmMxOGYzMWFmMjBiMDY4YzAzMDBiZjp7Il9hdXRoX3VzZXJfaGFzaCI6ImQwMzcyMGYyOWE1Y2YwMWFmZTI3MjMyNTdiYmVjZGE4YTE1MWM4MmIiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiI1In0=', '2019-04-05 09:20:51'),
+('4yr2gwnut57y4ddi2whj7s006l84out2', 'NWM5YzZmYjMwZTNjMzkyNzFhZGZjYTg4YjM1NTA5NmEwMTUzODNkZTp7Il9hdXRoX3VzZXJfaGFzaCI6IjEwMjE0MTMzMTk5ZmY0NDFjZWFlZjdmNzkzOTY1NTNlYjQ1ZmI5YzkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIzIn0=', '2019-04-05 09:21:47'),
+('e08zep0b477rcktqmqb41gm66q4l2i45', 'NWM5YzZmYjMwZTNjMzkyNzFhZGZjYTg4YjM1NTA5NmEwMTUzODNkZTp7Il9hdXRoX3VzZXJfaGFzaCI6IjEwMjE0MTMzMTk5ZmY0NDFjZWFlZjdmNzkzOTY1NTNlYjQ1ZmI5YzkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIzIn0=', '2019-04-05 09:23:09'),
+('ydzq903oqcisipxmn3ji2f0yw8wge1h7', 'ZTlkYzYzMWU2NjZkNzMxNDMzNDIwMGIwNDkzNjE4MDQ5ZTkwNzAwMzp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhZTRlMzc4MTQ3ZmZiYTkyMDU1ZTU2M2NlZjAwMGVhNzU1ZDJlMmI3In0=', '2019-04-09 12:20:25'),
+('qd276m3g8m6vojo4xr5w02xu999q2wo8', 'ZTlkYzYzMWU2NjZkNzMxNDMzNDIwMGIwNDkzNjE4MDQ5ZTkwNzAwMzp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhZTRlMzc4MTQ3ZmZiYTkyMDU1ZTU2M2NlZjAwMGVhNzU1ZDJlMmI3In0=', '2019-04-08 11:46:57'),
+('kwufwm398hu3fo6bzyozs7amv79e9u58', 'ZTlkYzYzMWU2NjZkNzMxNDMzNDIwMGIwNDkzNjE4MDQ5ZTkwNzAwMzp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhZTRlMzc4MTQ3ZmZiYTkyMDU1ZTU2M2NlZjAwMGVhNzU1ZDJlMmI3In0=', '2019-04-09 10:56:21'),
+('3wurxhikndk9j6drsmbzepyfmi4b4ne0', 'ZTlkYzYzMWU2NjZkNzMxNDMzNDIwMGIwNDkzNjE4MDQ5ZTkwNzAwMzp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhZTRlMzc4MTQ3ZmZiYTkyMDU1ZTU2M2NlZjAwMGVhNzU1ZDJlMmI3In0=', '2019-04-09 11:14:59'),
+('syf6wrhcv6x8c8ebgl5ax6om249vba6b', 'ZGZlNzQ4OTdiZDc1OWJmNTJiYzJiYzEzZDFiNGYzZTg3OTk3ZTVkODp7Il9hdXRoX3VzZXJfaGFzaCI6IjRkNGNiN2YzOGZjOWFjNjM5NmQxNzM4MGQ0NzczMGY5OTdiZjc3MzEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIzIn0=', '2019-04-09 13:04:39'),
+('igbo9mku8wh41fhe5nsdqwg4znjjnjqs', 'ZGZlNzQ4OTdiZDc1OWJmNTJiYzJiYzEzZDFiNGYzZTg3OTk3ZTVkODp7Il9hdXRoX3VzZXJfaGFzaCI6IjRkNGNiN2YzOGZjOWFjNjM5NmQxNzM4MGQ0NzczMGY5OTdiZjc3MzEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIzIn0=', '2019-04-09 13:08:34'),
+('rvdxy1icrddj1op54ru1wggscdit7ifi', 'ZGZlNzQ4OTdiZDc1OWJmNTJiYzJiYzEzZDFiNGYzZTg3OTk3ZTVkODp7Il9hdXRoX3VzZXJfaGFzaCI6IjRkNGNiN2YzOGZjOWFjNjM5NmQxNzM4MGQ0NzczMGY5OTdiZjc3MzEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIzIn0=', '2019-04-09 13:04:07'),
+('ikgsuuwimedsvtjveg6uv1onkvk7l9di', 'YzI5YjRhMmZiMDQzMTVhMWZjYTZlOTQ0ZDU4ZjhhZTY5ZDBlMzlkODp7Il9hdXRoX3VzZXJfaGFzaCI6IjZhYTYyZTFlZDhmMTkyZWMzM2Q0YzViZWYyZDBiYWVjNmU5YzMzNDkiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIzIn0=', '2019-04-09 13:30:53'),
+('xd75stvnyih96vlzp9uilym8wsv9i9bj', 'MjJhNWEwNmYyNjc5ZWVjOWZjN2ZkNDM5YTlmNjllN2U3MmFiNzk1Yjp7Il9hdXRoX3VzZXJfaWQiOiIzIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJjNzJjN2UyNTMwOWIyNTYxODUwN2E5YmI1MDRlM2M1NmYxZWU0NzJhIn0=', '2019-04-09 13:26:05'),
+('adleaco1up7q3rk2gj4l1twq2f7qtrof', 'NTMzMDZmYmI3NGNmMWU1NDcwOWE3NTU2MzVjOWVjMTJiZWUyY2Q5Yjp7Il9hdXRoX3VzZXJfaGFzaCI6IjA2ZDVjNWI4Zjk5NjA3OWMyYmFkZTQwZGZhOTJlY2U3ODIxYzE1ZjEiLCJfYXV0aF91c2VyX2JhY2tlbmQiOiJkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZCIsIl9hdXRoX3VzZXJfaWQiOiIyIn0=', '2019-04-09 13:33:05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order`
+--
+
+CREATE TABLE IF NOT EXISTS `order` (
+`id` int(10) NOT NULL,
+  `date` date DEFAULT NULL,
+  `customerid` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orderrow`
+--
+
+CREATE TABLE IF NOT EXISTS `orderrow` (
+`id` int(10) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `amount` int(10) DEFAULT NULL,
+  `price` decimal(9,2) DEFAULT NULL,
+  `orderid` int(10) NOT NULL,
+  `productid` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product`
+--
+
+CREATE TABLE IF NOT EXISTS `product` (
+`id` int(10) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `price` decimal(9,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tutorial_company`
+--
+
+CREATE TABLE IF NOT EXISTS `tutorial_company` (
+`id` int(11) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `address` varchar(45) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tutorial_company`
+--
+
+INSERT INTO `tutorial_company` (`id`, `name`, `address`) VALUES
+(1, 'Timo Company Oy', 'Timoroad 12'),
+(2, 'Timo Oy', 'COUNTRY ROAD'),
+(3, 'Timo Oy', 'COUNTRY ROAD'),
+(24, 'VAMK Oy', 'Wolffintie 30'),
+(11, 'Test', 'Tie'),
+(12, 'VEO', 'veoway'),
+(13, 'VEO', 'veoway'),
+(14, 'VAMK Oy', 'Wolffintie'),
+(15, 'VAMK Oy', 'Wolffintie'),
+(16, 'VAMK Oy', 'Wolffintie'),
+(17, 'VAMK Oy', 'Wolffintie'),
+(18, 'VAMK Oy', 'Wolffintie'),
+(19, 'VAMK Oy', 'Wolffintie'),
+(20, 'VAMK Oy', 'Wolffintie 30'),
+(21, 'VAMK Oy', 'Wolffintie 30'),
+(22, 'VAMK Oy', 'Wolffintie 30'),
+(23, 'VAMK Oy', 'Wolffintie 30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tutorial_product`
+--
+
+CREATE TABLE IF NOT EXISTS `tutorial_product` (
+`id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` decimal(9,2) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `auth_group`
+--
+ALTER TABLE `auth_group`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `auth_group_permissions`
+--
+ALTER TABLE `auth_group_permissions`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` (`group_id`,`permission_id`), ADD KEY `auth_group_permissions_group_id_b120cbf9` (`group_id`), ADD KEY `auth_group_permissions_permission_id_84c5c92e` (`permission_id`);
+
+--
+-- Indexes for table `auth_permission`
+--
+ALTER TABLE `auth_permission`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`), ADD KEY `auth_permission_content_type_id_2f476e4b` (`content_type_id`);
+
+--
+-- Indexes for table `auth_user`
+--
+ALTER TABLE `auth_user`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indexes for table `auth_user_groups`
+--
+ALTER TABLE `auth_user_groups`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `auth_user_groups_user_id_group_id_94350c0c_uniq` (`user_id`,`group_id`), ADD KEY `auth_user_groups_user_id_6a12ed8b` (`user_id`), ADD KEY `auth_user_groups_group_id_97559544` (`group_id`);
+
+--
+-- Indexes for table `auth_user_user_permissions`
+--
+ALTER TABLE `auth_user_user_permissions`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `auth_user_user_permissions_user_id_permission_id_14a6b632_uniq` (`user_id`,`permission_id`), ADD KEY `auth_user_user_permissions_user_id_a95ead1b` (`user_id`), ADD KEY `auth_user_user_permissions_permission_id_1fbb5f2c` (`permission_id`);
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `django_admin_log`
+--
+ALTER TABLE `django_admin_log`
+ ADD PRIMARY KEY (`id`), ADD KEY `django_admin_log_content_type_id_c4bce8eb` (`content_type_id`), ADD KEY `django_admin_log_user_id_c564eba6` (`user_id`);
+
+--
+-- Indexes for table `django_content_type`
+--
+ALTER TABLE `django_content_type`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`);
+
+--
+-- Indexes for table `django_migrations`
+--
+ALTER TABLE `django_migrations`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `django_session`
+--
+ALTER TABLE `django_session`
+ ADD PRIMARY KEY (`session_key`), ADD KEY `django_session_expire_date_a5c62663` (`expire_date`);
+
+--
+-- Indexes for table `order`
+--
+ALTER TABLE `order`
+ ADD PRIMARY KEY (`id`), ADD KEY `FKorder999588` (`customerid`);
+
+--
+-- Indexes for table `orderrow`
+--
+ALTER TABLE `orderrow`
+ ADD PRIMARY KEY (`id`), ADD KEY `FKorderrow223843` (`orderid`), ADD KEY `FKorderrow977118` (`productid`);
+
+--
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tutorial_company`
+--
+ALTER TABLE `tutorial_company`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tutorial_product`
+--
+ALTER TABLE `tutorial_product`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `auth_group`
+--
+ALTER TABLE `auth_group`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `auth_group_permissions`
+--
+ALTER TABLE `auth_group_permissions`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `auth_permission`
+--
+ALTER TABLE `auth_permission`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+--
+-- AUTO_INCREMENT for table `auth_user`
+--
+ALTER TABLE `auth_user`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `auth_user_groups`
+--
+ALTER TABLE `auth_user_groups`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `auth_user_user_permissions`
+--
+ALTER TABLE `auth_user_user_permissions`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `django_admin_log`
+--
+ALTER TABLE `django_admin_log`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `django_content_type`
+--
+ALTER TABLE `django_content_type`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `django_migrations`
+--
+ALTER TABLE `django_migrations`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+--
+-- AUTO_INCREMENT for table `order`
+--
+ALTER TABLE `order`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `orderrow`
+--
+ALTER TABLE `orderrow`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tutorial_company`
+--
+ALTER TABLE `tutorial_company`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+--
+-- AUTO_INCREMENT for table `tutorial_product`
+--
+ALTER TABLE `tutorial_product`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `order`
+--
+ALTER TABLE `order`
+ADD CONSTRAINT `FKorder999588` FOREIGN KEY (`customerid`) REFERENCES `customer` (`id`);
+
+--
+-- Constraints for table `orderrow`
+--
+ALTER TABLE `orderrow`
+ADD CONSTRAINT `FKorderrow977118` FOREIGN KEY (`productid`) REFERENCES `product` (`id`),
+ADD CONSTRAINT `FKorderrow223843` FOREIGN KEY (`orderid`) REFERENCES `order` (`id`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

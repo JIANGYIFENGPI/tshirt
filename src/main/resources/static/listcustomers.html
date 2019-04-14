@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Customer list</title>
+  <meta name="description" content="Customer list">
+  <meta name="author" content="Tka">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div id="ui"></div>
+  <script>
+  //Lets create a list of customers, first fetch customers
+  getCustomers();
+  
+  async function getCustomers(){
+    var uidata="<table class=\"table table-striped\">";
+    const response = await(await fetch('customers')).json()
+      .then(function(response){
+        for(var i =0;i<response.length;i++){
+          uidata+="<tr><td>"+response[i].id +"</td><td>"+response[i].name+"</td><td>"+response[i].email+"</td><td>" +
+          "<button onClick='edit2("+response[i].id +")'>Edit</button></td><td><button onClick='del("+response[i].id +")'>Delete</button></td></tr>";
+        }
+        document.getElementById("ui").innerHTML=uidata;    
+      });
+  }
+
+  async function edit2(id){
+    console.log(id);
+    const response = await(await fetch('customer/'+id)).json()
+      .then(function(response){
+        console.log(JSON.stringify(response));
+      });
+  }
+
+  function del(id){
+    fetch('customer', {
+        method: 'delete',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({"id":id})
+    }).then(res=>res.json())
+    .then(res => console.log(res));
+  }
+  //
+  </script>
+</body>
+</html>
